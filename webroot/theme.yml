@@ -1,0 +1,16 @@
+name: foundation
+description: Zurb's Foundation theme ported for Croogo
+screenshot: screenshot.jpg
+
+author: Rachman Chavik
+authorEmail: rchavik@gmail.com
+authorUrl: http://xintesa.com
+
+menus:
+  - main
+
+regions:
+  - header-right
+  - right
+  - center
+  - footer
