@@ -14,7 +14,7 @@
 	/* To fix the grid into a certain size, set max-width to width */
 	.row .row { min-width: 0px; }
 	
-	.column, .columns { margin-left: 4.4%; float: left; min-height: 1px; position: relative; }
+	.column, .columns { margin-left: 4.4%; float: left; min-height: 1px; /* position: relative; */ }
 	.column:first-child, .columns:first-child { margin-left: 0px; }
 	
 	.row .one.columns { width: 4.3%; }
