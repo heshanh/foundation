@@ -1,0 +1,14 @@
+.site-title a { text-decoration: none; }
+
+#nav { margin: 30px auto; }
+#menu-main { background: #f7f7f7; float: left; width: 100%; }
+#menu-main ul { background: #eee; }
+#menu-main ul a { color: #2d2d2d; }
+#menu-main ul a:hover { background: #e9e9e9; }
+#menu-main a { padding: 0.40rem 0.5rem; line-height: 2rem; color: #444; text-decoration: none; }
+#menu-main a:hover { background: #e5e5e5; }
+#menu-main a.selected { background: #dadada; }
+
+@media only screen and (max-width: 768px) {
+	    #menu-main ul ul { background: #e6e6e6; }
+}

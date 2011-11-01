@@ -11,10 +11,13 @@
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
 
-	<title>Welcome to Foundation</title>
+	<title><?php echo $title_for_layout; ?> &raquo; <?php echo Configure::read('Site.title'); ?></title>
 
-	<!-- Included CSS Files -->
 	<?php
+	echo $this->Layout->meta();
+	echo $this->Layout->feed();
+
+	// Included CSS Files
 	echo $this->Html->css(array(
 		// Combine and Compress These CSS Files
 		'globals.css',
@@ -27,6 +30,7 @@
 		'mobile.css',
 		//End Combine and Compress These CSS Files -->
 		'app.css',
+		'theme.css',
 		));
 	?>
 	<!--[if lt IE 9]>
@@ -39,6 +43,8 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+	<?php echo $this->Layout->js(); ?>
+
 </head>
 <body>
 
@@ -47,91 +53,48 @@
 
 		<div class="row">
 			<div class="twelve columns">
-				<h2>Welcome to Foundation</h2>
-				<p>This is version 2.0.3 released on October 31, 2011</p>
-		
-				<hr />
+				<h1 class="site-title"><?php echo $this->Html->link(Configure::read('Site.title'), '/'); ?></h1>
+				<span class="site-tagline"><?php echo Configure::read('Site.tagline'); ?></span>
+			</div>
+		</div>
+
+		<div id="nav" class="row">
+			<div class="twelve columns">
+				<?php
+				$menuAlias = 'main';
+				$options = array(
+					'tag' => 'ul',
+					'tagAttributes' => array(
+						'id' => 'menu-' . $menuAlias
+						),
+					'selected' => 'selected',
+					'dropdown' => true, 'dropdownClass' => 'responsive-menu',
+					);
+				echo $this->Layout->nestedLinks($menus_for_layout[$menuAlias]['threaded'], $options);
+				?>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="eight columns">
-				<h3>The Grid</h3>
-
-				<!-- Grid Example -->
-				<div class="row">
-					<div class="twelve columns">
-						<div class="panel">
-							<p>This is a twelve column section in a row. Each of these includes a div.panel element so you can see where the columns are - it's not required at all for the grid.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="six columns">
-						<div class="panel">
-							<p>Six columns</p>
-						</div>
-					</div>
-					<div class="six columns">
-						<div class="panel">
-							<p>Six columns</p>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="four columns">
-						<div class="panel">
-							<p>Four columns</p>
-						</div>
-					</div>
-					<div class="four columns">
-						<div class="panel">
-							<p>Four columns</p>
-						</div>
-					</div>
-					<div class="four columns">
-						<div class="panel">
-							<p>Four columns</p>
-						</div>
-					</div>
-				</div>
-
-				<h3>Tabs</h3>
-				<dl class="tabs">
-					<dd><a href="#simple1" class="active">Simple Tab 1</a></dd>
-					<dd><a href="#simple2">Simple Tab 2</a></dd>
-					<dd><a href="#simple3">Simple Tab 3</a></dd>
-				</dl>
-
-				<ul class="tabs-content">
-					<li class="active" id="simple1Tab">This is simple tab 1's content. Pretty neat, huh?</li>
-					<li id="simple2Tab">This is simple tab 2's content. Now you see it!</li>
-					<li id="simple3Tab">This is simple tab 3's content. It's, you know...okay.</li>
-				</ul>
-
-				<h3>Buttons</h3>
-
-				<p><a href="#" class="small blue button">Small Blue Button</a></p>
-				<p><a href="#" class="blue button">Medium Blue Button</a></p>
-				<p><a href="#" class="large blue button">Large Blue Button</a></p>
-
-				<p><a href="#" class="nice radius small blue button">Nice Blue Button</a></p>
-				<p><a href="#" class="nice radius blue button">Nice Blue Button</a></p>
-				<p><a href="#" class="nice radius large blue button">Nice Blue Button</a></p>
-
+				<?php
+					echo $this->Layout->sessionFlash();
+					echo $content_for_layout;
+				?>
 			</div>
-
 			<div class="four columns">
-				<h4>Getting Started</h4>
-				<p>We're stoked you want to try Foundation! To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
+				<?php echo $this->Layout->blocks('right'); ?>
+			</div>
+		</div>
 
-				<h4>Other Resources</h4>
-				<p>Once you've exhausted the fun in this document, you should check out:</p>
-				<ul class="disc">
-					<li><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</li>
-					<li><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</li>
-					<li><a href="http://twitter.com/foundationzurb">@foundationzurb</a><br />Ping us on Twitter if you have questions. If you build something with this we'd love to see it (and send you a totally boss sticker).</li>
-				</ul>
+		<div id="footer" class="row">
+			<div class="twelve columns">
+				<div class="left">
+					Powered by <a href="http://www.croogo.org">Croogo</a>.
+				</div>
+				<div class="right">
+					<a href="http://www.cakephp.org"><?php echo $this->Html->image('/img/cake.power.gif'); ?></a>
+				</div>
 			</div>
 		</div>
 
@@ -154,7 +117,8 @@
 		// End Combine and Compress These JS Files
 		'app.js',
 		));
-	?>
 
+	echo $this->Js->writeBuffer();
+	?>
 </body>
 </html>
