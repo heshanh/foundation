@@ -101,9 +101,6 @@
 	</div>
 	<!-- container -->
 
-
-
-
 	<!-- Included JS Files -->
 	<?php
 	echo $this->Html->script(array(
@@ -118,7 +115,12 @@
 		'app.js',
 		));
 
+	echo $scripts_for_layout;
 	echo $this->Js->writeBuffer();
 	?>
+
+	<script>
+	$(function() { $('#menu-main').responsiveMenu(); });
+	</script>
 </body>
 </html>

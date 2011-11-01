@@ -14,3 +14,7 @@ regions:
   - right
   - center
   - footer
+
+dependencies:
+  plugins:
+    - ResponsiveMenu
